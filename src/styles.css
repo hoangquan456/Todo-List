@@ -23,7 +23,7 @@ body {
     font-size: 1.5em;
 }
 
-#left-bar div:first-child {
+#all {
     font-weight: bold;
     padding: 10px;
     cursor: pointer;
@@ -31,19 +31,33 @@ body {
     margin-bottom: 20px;
 }
 
-#left-bar div:first-child:hover {
+#all:hover,
+#project-list li:hover {
     background-color: #d0d0d0;
 }
 
 #content {
-    flex:1;
+    flex: 1;
     padding: 1.5rem;
 }
 
 #dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.task-group {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.task-group h2 {
+    grid-column: 1 / -1; /* Span full width */
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #333;
 }
 
 #project-list {
@@ -82,11 +96,6 @@ body {
     background-color: #45a049;
 }
 
-main {
-    flex-grow: 1;
-    padding: 20px;
-}
-
 #addTask {
     padding: 10px 20px;
     background-color: #008CBA;
@@ -109,11 +118,11 @@ main {
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 15px;
-    margin-bottom: 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative; /* For priority indicator positioning */
 }
 
 .todo-tile h3 {
@@ -149,6 +158,31 @@ main {
     background-color: #da190b;
 }
 
+.status-indicator {
+    padding: 5px 10px;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status-indicator:hover {
+    opacity: 0.9;
+}
+
+.priority-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 3px 8px;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
 #form-container {
     background-color: #fff;
     position: fixed;
@@ -178,7 +212,6 @@ main {
 
 #form-container textarea {
     height: 100px;
-    resize: vertical;
     resize: none;
 }
 
@@ -188,7 +221,7 @@ main {
     cursor: pointer;
 }
 
-#form-container button[type="button"] { /* Close */
+#form-container button[type="button"] {
     background-color: #ccc;
 }
 
@@ -196,7 +229,7 @@ main {
     background-color: #bbb;
 }
 
-#form-container button:last-child { /* Add */
+#form-container button:last-child {
     background-color: #4CAF50;
     color: white;
 }
@@ -207,18 +240,4 @@ main {
 
 .hidden {
     display: none;
-}
-
-.status-indicator {
-    padding: 5px 10px;
-    color: white;
-    text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.status-indicator:hover {
-    opacity: 0.9; /* Slight hover effect */
 }
