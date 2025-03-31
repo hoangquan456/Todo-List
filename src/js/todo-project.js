@@ -18,10 +18,10 @@ export class todo_project {
     }
 
     updateItem(id, title, description, dueDate, priority, completed) {
-        this.arr.forEach( (item) => {
-            if (item.id == id) {
-                item.title = title; 
-                item.description = description; 
+        this.arr.forEach((item) => {
+            if (item.id === id) {
+                item.title = title;
+                item.description = description;
                 item.dueDate = dueDate;
                 item.priority = priority;
                 item.completed = completed;

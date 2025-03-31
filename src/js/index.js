@@ -1,10 +1,15 @@
 import { projectManagement } from "./project-management";
+import { uiHandler } from "./ui-handler";
+import "../styles.css";
 
 let manage = new projectManagement(); 
-manage.addProject("default"); 
-manage.addItem("default", true, true, true, true, true);
+manage.addProject("Default"); 
+manage.addProject("Test"); 
+// manage.addItem("Default", 123, true, true, true, true);
+// manage.addItem("Test", 456, true, true, true, true);
 
-manage.renameProject("default", "test");
+const ui = new uiHandler(manage); 
+
 // manage.deleteProject("default");
 
 console.log(manage);

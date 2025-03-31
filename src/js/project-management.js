@@ -15,6 +15,7 @@ export class projectManagement {
 
     renameProject(oldName, newName) {
         this.manage[newName] = this.manage[oldName];
+        this.deleteProject(oldName);
     }
 
     addItem(projectName, title, description, dueDate, priority, completed) {
@@ -25,7 +26,17 @@ export class projectManagement {
         this.manage[projectName].deleteItem(id);
     }
 
-    updateItem(projectName, id) {
-        this.manage[projectName].updateItem(title, description, dueDate, priority, completed);
+    updateItem(projectName, id, title, description, dueDate, priority, completed) {
+        this.manage[projectName].updateItem(id, title, description, dueDate, priority, completed);
+    }
+
+    traverse(projectName, callback) {
+        for (const [key, project] of Object.entries(this.manage)) {
+            if (key === projectName || projectName == "AlL TasK") {
+                project.arr.forEach((item) => {
+                    callback(item, key); // Call the provided function for each item
+                });
+            }
+        }
     }
 }
